@@ -87,63 +87,47 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
 	/////
-	document.getElementById('msform').addEventListener('submit', function(event) {
-		event.preventDefault(); // Prevent form submission
-		let mealobject={timeFrame:"",targetCalories:"",diet:"",exclude:""}
+	// document.getElementById('msform').addEventListener('submit', function(event) {
+	// 	event.preventDefault(); // Prevent form submission
+	// 	let mealobject={timeFrame:"",targetCalories:"",diet:"",exclude:""}
 
-		console.log("hellooo");
-		var timeframe = document.getElementById('timeframe').value;
-		mealobject["timeFrame"]=timeframe
-		var calories = document.getElementById('targetcalories').value;
-		mealobject["targetCalories"]=calories
-		var diet = document.getElementById('diet').value;
-		mealobject["diet"]=diet
-		var exclude = document.getElementById('exclude').value;
-		mealobject["exclude"]=exclude
+	// 	console.log("hellooo");
+	// 	var timeframe = document.getElementById('timeFrame').value;
+	// 	mealobject["timeFrame"]=timeframe
+	// 	var calories = document.getElementById('targetCalories').value;
+	// 	mealobject["targetCalories"]=calories
+	// 	var diet = document.getElementById('diet').value;
+	// 	mealobject["diet"]=diet
+	// 	var exclude = document.getElementById('exclude').value;
+	// 	mealobject["exclude"]=exclude
 	
-		// this.querySelectorAll('input, textarea').forEach(function(element) {
-		// 	formData[element.name] = element.value;
-		// });
-		console.log(mealobject);
-		console.log('Name:', timeframe);
-		console.log('calories:', calories);
-		console.log('diet:', diet);
-		console.log('exclude:', exclude);
+	// 	// this.querySelectorAll('input, textarea').forEach(function(element) {
+	// 	// 	formData[element.name] = element.value;
+	// 	// });
+	// 	console.log(mealobject);
+	// 	console.log('Name:', timeframe);
+	// 	console.log('calories:', calories);
+	// 	console.log('diet:', diet);
+	// 	console.log('exclude:', exclude);
 
-		displayMealPlan(mealobject)
+	// 	displayMealPlan(mealobject)
 	
-		// You can now use these values as needed, such as sending them to a server using AJAX
-	});
+	// 	// You can now use these values as needed, such as sending them to a server using AJAX
+	// });
 
-	function displayMealPlan(mealobject){
-		console.log(mealobject["timeFrame"])
-		fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${mealobject["timeFrame"]}&targetCalories=${mealobject["targetCalories"]}&apiKey=668459505d964573bdefa9396899795c`)
-			.then(response => response.json())
-			.then(data => {
-				console.log(data);
-				displayMealPlanhere(data);
-			})
-			.catch(error => {
-				console.error('Error fetching data:', error);
-			});
-	}
+	// function displayMealPlan(mealobject){
+	// 	console.log(mealobject["timeFrame"])
+	// 	fetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=${mealobject["timeFrame"]}&targetCalories=${mealobject["targetCalories"]}&apiKey=668459505d964573bdefa9396899795c`)
+	// 		.then(response => response.json())
+	// 		.then(data => {
+	// 			console.log(data);
+				
+	// 		})
+	// 		.catch(error => {
+	// 			console.error('Error fetching data:', error);
+	// 		});
+	// }
 
 
-	function displayMealPlanhere(data) {
-		const mealPlanElement = document.getElementById('mealPlan');
-		mealPlanElement.innerHTML = '';
-
-		const meals = data.meals;
-		meals.forEach(meal => {
-			const mealItem = document.createElement('div');
-			mealItem.classList.add('meal-item');
-			mealItem.innerHTML = `
-				<h2>${meal.title}</h2>
-				<img src="${meal.image}" alt="${meal.title}">
-				<p>${meal.readyInMinutes}</p>
-				<button class="recipeBtn" data-id="${meal.id}">Get Recipe Details</button>
-			`;
-			mealPlanElement.appendChild(mealItem);
-		});
-	}
+	
 });

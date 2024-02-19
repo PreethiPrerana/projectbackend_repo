@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@
                 <p>Fill all form field to go to next step</p>
                 <div class="row">
                     <div class="col-md-12 mx-0">
-                        <form id="msform">
+                        <form id="msform" action="#" th:action="@{/mealplanner/week}" th:object="${formdata}" method="post">
                             <!-- progressbar -->
                             <ul id="progressbar">
                                 <li class="active" id="confirm"><strong>Timeframe</strong></li>
@@ -36,7 +36,7 @@
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">Timeframe</h2>
-                                    <select class="form-control" id="timeframe" required>
+                                    <select class="form-control" id="timeFrame" th:field="*{timeFrame}" required>
                                         <option value="day">Day</option>
                                         <option value="week">Week</option>
                                     </select>
@@ -46,8 +46,8 @@
                             <fieldset>
                                 <div class="form-card">
                                     <h2 class="fs-title">Calories</h2>
-                                    <label for="targetcalories">Target Calories:</label>
-                                    <input type="number" class="form-control" id="targetcalories" required>
+                                    <label for="targetCalories">Target Calories:</label>
+                                    <input type="number" class="form-control" id="targetCalories" th:field="*{targetCalories}" required>
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
                                 <input type="button" name="next" class="next action-button" value="Next Step"/>
@@ -56,7 +56,7 @@
                                 <div class="form-card">
                                     <h2 class="fs-title">Diet</h2>
                                     <label for="diet">Diet:</label>
-                                    <select class="form-control" id="diet" required>
+                                    <select class="form-control" id="diet" th:field="*{diet}" required>
                                         <option value="Gluten Free">Gluten Free</option>
                                         <option value="Ketogenic">Ketogenic</option>
                                         <option value="Vegetarian">Vegetarian</option>
@@ -71,26 +71,19 @@
                                 <div class="form-card">
                                     <h2 class="fs-title">Exclude</h2>
                                     <label for="exclude">Exclude (comma-separated):</label>
-                                     <input type="text" class="form-control" id="exclude">
+                                     <input type="text" class="form-control" id="exclude" th:field="*{exclude}">
                                 
                                 </div>
                                 <input type="button" name="previous" class="previous action-button-previous" value="Previous"/>
-                                <button type="submit">Submit</button>
+                                
 
-                                <div class="container">
-                                    <h1>Meal Planner</h1>
-                                    <button id="generateBtn">Generate Meal Plan</button>
-                                    <div id="mealPlan"></div>
-                                </div>
+                                
                                 
                             </fieldset>
 
+                            <button type="submit">Submit</button>
                             
-                            <!-- <fieldset>
-                                <div class="form-card">
-                                   
-                                </div>
-                            </fieldset> -->
+                            
                         </form>
                     </div>
                 </div>
