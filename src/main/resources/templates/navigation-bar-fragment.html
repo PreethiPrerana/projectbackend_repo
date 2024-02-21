@@ -1,0 +1,68 @@
+<!-- navigation-bar-fragment.html -->
+<div th:fragment="navigationBarFragment">
+    <style>
+        :root {
+          --background-color: #F2E5E5;
+          --navy-blue-color: #2B3A55;
+          --color-1: #E8C4C4;
+          --color-2: #FAFAFA;
+        }
+
+        .navigation-bar {
+          background: var(--navy-blue-color);
+          color: #fff;
+          font-size: 1rem;
+          height: 80px;
+        }
+
+        .navigation-bar-container {
+          padding: 0 24px;
+          justify-content: space-between;
+          display: flex;
+          align-items: center;
+          margin: 0 auto;
+          height: inherit;
+        }
+
+        /* .navigation-bar-item:hover {
+          color: var(--color-1);
+          cursor: pointer;
+        } */
+
+        .nav-right-side {
+          display: flex;
+          gap: 48px;
+          align-items: center;
+        }
+
+        /* body {
+          background: var(--color-2);
+          margin: 0;
+          padding: 0;
+          font-family: "Golos text";
+          color: var(--navy-blue-color);
+          line-height: 1.5;
+        } */
+
+        a {
+          color: inherit;
+          text-decoration: none;
+        }
+    </style>
+    
+    <div class="navigation-bar">
+        <div class="navigation-bar-container">
+            <div class="navigation-bar-logo animate__animated KILLanimate__backInDown">
+                <!-- Add your logo content here -->
+            </div>
+            <div class="nav-right-side">
+                <div class="navigation-bar-item"><a th:href="@{/}">Home</a></div>
+                <div class="navigation-bar-item"><a th:href="@{/formpage}">Survey</a></div>
+                <div class="navigation-bar-item"><a th:href="@{/profile}">Profile</a></div>
+                <div class="search-bar">
+                    <!-- Add your search bar content here -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
