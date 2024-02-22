@@ -685,4 +685,25 @@
       U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215,
       U+FEFF, U+FFFD;
   }
+
+
+  .calendar {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+/* .week {
+    cursor: pointer;
+    border: 1px solid #ccc;
+    padding: 5px 10px;
+}
+
+.days {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+} */
+
+
   

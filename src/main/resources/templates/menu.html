@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Meals of the Day</title>
+<link rel="stylesheet" th:href="@{/dayresponsestyle.css}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+<h2>Meals of the week</h2>
+
+<!-- <table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Title</th>
+<th>Ready in Minutes</th>
+<th>Servings</th>
+<th>Source URL</th>
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="meal : ${weekresponse.week.monday.meals}">
+<td th:text="${meal.id}"></td>
+<td th:text="${meal.title}"></td>
+<td th:text="${meal.readyInMinutes}"></td>
+<td th:text="${meal.servings}"></td>
+<td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+</tr>
+<tr th:each="meal : ${weekresponse.week.tuesday.meals}">
+    <td th:text="${meal.id}"></td>
+    <td th:text="${meal.title}"></td>
+    <td th:text="${meal.readyInMinutes}"></td>
+    <td th:text="${meal.servings}"></td>
+    <td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+    </tr>
+    <tr th:each="meal : ${weekresponse.week.wednesday.meals}">
+        <td th:text="${meal.id}"></td>
+        <td th:text="${meal.title}"></td>
+        <td th:text="${meal.readyInMinutes}"></td>
+        <td th:text="${meal.servings}"></td>
+        <td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+        </tr>
+        <tr th:each="meal : ${weekresponse.week.thursday.meals}">
+            <td th:text="${meal.id}"></td>
+            <td th:text="${meal.title}"></td>
+            <td th:text="${meal.readyInMinutes}"></td>
+            <td th:text="${meal.servings}"></td>
+            <td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+            </tr>
+            <tr th:each="meal : ${weekresponse.week.friday.meals}">
+                <td th:text="${meal.id}"></td>
+                <td th:text="${meal.title}"></td>
+                <td th:text="${meal.readyInMinutes}"></td>
+                <td th:text="${meal.servings}"></td>
+                <td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+                </tr>
+                <tr th:each="meal : ${weekresponse.week.saturday.meals}">
+                    <td th:text="${meal.id}"></td>
+                    <td th:text="${meal.title}"></td>
+                    <td th:text="${meal.readyInMinutes}"></td>
+                    <td th:text="${meal.servings}"></td>
+                    <td><a th:href="${meal.sourceUrl}" th:text="${meal.sourceUrl}">Source</a></td>
+                    </tr>
+</tbody>
+</table> -->
+<div class="calendar">
+    <div class="week" onclick="showDays('week1')">Day 1</div>
+    <div class="week" onclick="showDays('week2')">Day 2</div>
+    <div class="week" onclick="showDays('week3')">Day 3</div>
+    <div class="week" onclick="showDays('week4')">Day 4</div>
+    <div class="week" onclick="showDays('week5')">Day 5</div>
+    <div class="week" onclick="showDays('week6')">Day 6</div>
+    <div class="week" onclick="showDays('week7')">Day 7</div>
+</div>
+
+<div id="week1" class="days" >
+    
+    
+    
+    <div class="et_pb_section et_pb_section_2 et_pb_with_background et_section_regular">
+        <div class="et_pb_row et_pb_row_2">
+          <div class="et_pb_column et_pb_column_4_4 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
+            <div class="et_pb_module et_pb_text et_pb_text_4  et_pb_text_align_left et_pb_bg_layout_dark">
+              <div class="et_pb_text_inner">
+                <h2>Daymeal planner</h2>
+                <h1></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="et_pb_row et_pb_row_3 et_pb_gutters2">
+          <div class="et_pb_column et_pb_column_1_3 et_pb_column_7  et_pb_css_mix_blend_mode_passthrough" th:each="meal : ${weekresponse.week.saturday.meals}">
+            <div class="et_pb_module et_pb_image et_pb_image_2">
+              <span class="et_pb_image_wrap has-box-shadow-overlay">
+                <div class="box-shadow-overlay"></div><img decoding="async" th:src="${meal.sourceUrl}" alt="" title="cooking-01">
+                <!-- <div class="box-shadow-overlay"></div><img decoding="async" src="https://ishtiaq.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/07/cooking-01.png" alt="" title="cooking-01"> -->
+              </span>
+            </div>
+            <div class="et_pb_module et_pb_text et_pb_text_5  et_pb_text_align_left et_pb_bg_layout_light">
+              <div class="et_pb_text_inner">
+                <h3 th:text="${meal.title}"></h3>
+                
+                
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_text et_pb_text_6  et_pb_text_align_left et_pb_bg_layout_light">
+              <div class="et_pb_text_inner">
+                <p th:text="${meal.readyInMinutes}"></p>
+              </div>
+            </div>
+            <form action="#" th:action="@{/getrecipe/recipe}" th:object="${meal.id}" method="post">
+                <div class="container">
+                    <input type="hidden" th:name="recipeid" th:value="${meal.id}" />
+                    <button type="submit" class="btn btn-primary">Recipe</button>
+                </div>
+            </form>
+          </div>
+          
+          
+        </div>
+        <div class="container">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+
+
+    </div>
+    
+</div>
+<div id="week2" class="days" style="display: none;">
+
+
+    <div class="et_pb_section et_pb_section_2 et_pb_with_background et_section_regular">
+        <div class="et_pb_row et_pb_row_2">
+          <div class="et_pb_column et_pb_column_4_4 et_pb_column_6  et_pb_css_mix_blend_mode_passthrough et-last-child">
+            <div class="et_pb_module et_pb_text et_pb_text_4  et_pb_text_align_left et_pb_bg_layout_dark">
+              <div class="et_pb_text_inner">
+                <h2>Daymeal planner</h2>
+                <h1></h1>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="et_pb_row et_pb_row_3 et_pb_gutters2">
+          <div class="et_pb_column et_pb_column_1_3 et_pb_column_7  et_pb_css_mix_blend_mode_passthrough" th:each="meal : ${weekresponse.week.monday.meals}">
+            <div class="et_pb_module et_pb_image et_pb_image_2">
+              <span class="et_pb_image_wrap has-box-shadow-overlay">
+                <div class="box-shadow-overlay"></div><img decoding="async" th:src="${meal.sourceUrl}" alt="" title="cooking-01">
+                <!-- <div class="box-shadow-overlay"></div><img decoding="async" src="https://ishtiaq.sandbox.etdevs.com/divi/wp-content/uploads/sites/2/2020/07/cooking-01.png" alt="" title="cooking-01"> -->
+              </span>
+            </div>
+            <div class="et_pb_module et_pb_text et_pb_text_5  et_pb_text_align_left et_pb_bg_layout_light">
+              <div class="et_pb_text_inner">
+                <h3 th:text="${meal.title}"></h3>
+                
+                
+              </div>
+            </div>
+            <div class="et_pb_module et_pb_text et_pb_text_6  et_pb_text_align_left et_pb_bg_layout_light">
+              <div class="et_pb_text_inner">
+                <p th:text="${meal.readyInMinutes}"></p>
+              </div>
+            </div>
+            <form action="#" th:action="@{/getrecipe/recipe}" th:object="${meal.id}" method="post">
+                <div class="container">
+                    <input type="hidden" th:name="recipeid" th:value="${meal.id}" />
+                    <button type="submit" class="btn btn-primary">Recipe</button>
+                </div>
+            </form>
+          </div>
+          
+          
+        </div>
+        <div class="container">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+
+
+</div>
+<div id="week3" class="days" style="display: none;">Days of Week 3</div>
+<div id="week4" class="days" style="display: none;">Days of Week 4</div>
+<div id="week5" class="days" style="display: none;">Days of Week 5</div>
+<div id="week6" class="days" style="display: none;">Days of Week 6</div>
+<div id="week7" class="days" style="display: none;">Days of Week 7</div>
+<script th:src="@{menuscript.js}"></script>
+</body>
+</html>
